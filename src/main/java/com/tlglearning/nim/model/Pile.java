@@ -6,27 +6,41 @@ public class Pile {
     private int removed;
     private int remaining;
 
-    // TODO: 10/18/22 Define constructor that initializes remove to 0 and sets remaining to the value of a parameter
+    // DONE: 10/18/22 Define constructor that initializes remove to 0 and sets remaining to the value of a parameter
 
     //Constructor
-    public Pile(int removed, int remaining) {
-        this.removed = 0;
-        this.remaining = remaining;
+//    public Pile(int removed, int remaining) {
+//        this.removed = 0;
+//        this.remaining = remaining;
+//    }
+
+    public Pile(int size) {
+        removed = 0;
+        remaining = size;
     }
 
-    // TODO: 10/18/22 Define methods shown in nim-classes.svg as stubs
+    // DONE: 10/18/22 Define methods shown in nim-classes.svg as stubs
 
     //Methods
     public int remove(int quantity) {
-        return quantity;
+        if (quantity > remaining) {
+            throw new IllegalArgumentException("Quantity to remove must not exceed quantity remaining");
+        }
+        removed += quantity;
+        remaining -= quantity;
+        return remaining;
     }
 
-    public boolean isEmpty() {
-        return false;
+    public boolean isEmpty() { // DONE: implemnet logic
+        if (remaining == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
-    // TODO: 10/18/22 Generate "getters" (accessors) for removed and remaining
+    // DONE: 10/18/22 Generate "getters" (accessors) for removed and remaining
     //Accessors (getter/setter)
     public int getRemoved() {
         return removed;
@@ -36,5 +50,5 @@ public class Pile {
         return remaining;
     }
 
-    // TODO: 10/18/22 Create a test class for Pile
+    // DONE: 10/18/22 Create a test class for Pile
 }
