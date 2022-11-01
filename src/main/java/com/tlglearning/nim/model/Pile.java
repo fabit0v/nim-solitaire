@@ -14,7 +14,10 @@ public class Pile {
 //        this.remaining = remaining;
 //    }
 
-    public Pile(int size) {
+    public Pile(int size) throws IllegalArgumentException {
+        if (size < 0){
+            throw  new IllegalArgumentException(String.format(BAD_SIZE_FORMAT, size));
+        }
         removed = 0;
         remaining = size;
     }
@@ -22,7 +25,7 @@ public class Pile {
     // DONE: 10/18/22 Define methods shown in nim-classes.svg as stubs
 
     //Methods
-    public int remove(int quantity) {
+    public int remove(int quantity) throws IllegalArgumentException {
         if (quantity > remaining) {
             throw new IllegalArgumentException("Quantity to remove must not exceed quantity remaining");
         }
@@ -31,12 +34,8 @@ public class Pile {
         return remaining;
     }
 
-    public boolean isEmpty() { // DONE: implemnet logic
-        if (remaining == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isEmpty() { // DONE: implement logic
+        return remaining == 0; //boolean expression (true/false)
     }
 
 
@@ -51,4 +50,17 @@ public class Pile {
     }
 
     // DONE: 10/18/22 Create a test class for Pile
+
+
+    @Override
+    public String toString() {
+        return "Pile{" +
+                "removed=" + removed +
+                ", remaining=" + remaining +
+                '}';
+//        public
+//        return String.format("Pile{removed=%d, remaining=%d}", removed, remaining);
+    }
 }
+
+

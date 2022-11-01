@@ -8,6 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class PileTest {
 
     @Test
+    void constructor_valid(){
+        assertThrows(IllegalArgumentException.class, () -> new Pile(10));
+    }
+
+    @Test
         //DONE: implement tests (with valid and invalid inputs) for remove
     void remove_valid() {
         Pile pile = new Pile(10); //give size of 10

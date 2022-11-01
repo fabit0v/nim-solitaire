@@ -4,20 +4,50 @@ package com.tlglearning.nim.model;
 
 public enum State {
 
-    PLAYER2_MOVE,
-    PLAYER1_MOVE,
+    PLAYER1_MOVE {
+        @Override
+        public boolean isTerminal() {
+            return false;
+        }
+
+        @Override
+        public State nextMoveState() {
+            return PLAYER2_MOVE;
+        }
+
+        @Override
+        public State nextWinState() {
+            return PLAYER1_WIN;
+        }
+    },
+    PLAYER2_MOVE{
+        @Override
+        public boolean isTerminal() {
+            return false;
+        }
+
+        @Override
+        public State nextMoveState() {
+            return PLAYER1_MOVE;
+        }
+
+        @Override
+        public State nextWinState() {
+            return PLAYER2_WIN;
+        }
+    },
     PLAYER1_WIN,
     PLAYER2_WIN;
 
-    private boolean isTerminal() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public boolean isTerminal() {
+        return true;
     }
 
-    public void nextMoveState() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public State nextMoveState() {
+        return this;
     }
 
-    public void nextWinState() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public State nextWinState() {
+        return this;
     }
 }
