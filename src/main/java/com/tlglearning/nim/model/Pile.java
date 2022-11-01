@@ -2,6 +2,7 @@ package com.tlglearning.nim.model;
 
 public class Pile {
 
+    private static final String BAD_SIZE_FORMAT = "Invalid size: %d; must be non-negative.";
     //Fields
     private int removed;
     private int remaining;

@@ -18,21 +18,24 @@ public class Game {
             piles.add(new Pile(size));
         }
         this.piles = piles;
-        if (isFinished()) {
-            this.state = state.nextWinState(); //TODO: Explore whether this should be allowed
-        }
+        this.state = isFinished() ? state.nextMoveState().nextWinState() : state;
     }
 
     // TODO: 10/25/22 Implement to remove specified quantity from specified pile, and update State 
     public void play(Pile pile, int quantity) throws IllegalArgumentException {
-        if (isFinished()) {
-            pile.remove(quantity);
-
-        } else {
-            state.nextMoveState();
+        if (state.isTerminal()){
+            throw new IllegalStateException("Game already finished");
         }
 
-        throw new UnsupportedOperationException("not yet implemented");
+        pile.remove(quantity);
+        //ternary operator -boolean condition. if x ? x is true, then : (condition)
+        state = isFinished() ? state.nextWinState() : state.nextMoveState();
+//        if (isFinished()) {
+//            state = state.nextWinState();
+//
+//        } else {
+//            state = state.nextMoveState();
+//        }
     }
 
     // DONE: 10/25/22 Checks all piles and return true if all are empty

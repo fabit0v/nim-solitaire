@@ -48,7 +48,7 @@ class GameTest {
         for (Pile pile : game.getPiles()) {
             game.play(pile, pile.getRemaining());
         }
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalStateException.class,
                 () -> game.play(game.getPiles().get(0), 1));
     }
 
@@ -65,7 +65,7 @@ class GameTest {
     void isFinished_none() {
         Game game = new Game(State.PLAYER1_MOVE, new int[]{3, 5, 7});
         for (Pile pile : game.getPiles()) {
-            game.play(pile, pile.getRemaining() - 1);
+            game.play(pile, pile.getRemaining());
         }
         assertTrue(game.isFinished());
     }
