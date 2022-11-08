@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-class GameView {
+public class GameView {
 
     private static final String PILE_SEPARATOR = System.lineSeparator().repeat(2);
 
